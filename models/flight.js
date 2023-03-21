@@ -1,15 +1,14 @@
 const mongoose = require('mongoose')
 
 const destinationsSchema = new mongoose.Schema({
-    airPort: {
+    airport: {
         type: String,
         enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN']
     },
-        arrival: Date
-  }, 
-  {
-    timestamps: true
-  });
+        arrival: {
+            type:  Date
+        }
+});
 // Schema is a guard on our collection that says
 // everytime we want to add a document (object) to our collection 
 // in mongodb, it must have this shape, 
@@ -21,19 +20,19 @@ const flightSchema = new mongoose.Schema({
     },
      airport: {
         type: String, 
-        enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN']
+        enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN'],
+        default: 'DFW'
     },
 	flightNo: {
         type: Number,
         min: 11,
         max: 9998
     },
-    destinations: [destinationsSchema],
 	departs: {
         type: Date,
-        default: function(){
-      return new Date().getFullYear();
-    }},
+        default: new Date().setFullYear(new Date().getFullYear() + 1)
+    },
+    destinations: [destinationsSchema],
 });
 
 module.exports = mongoose.model('Flight', flightSchema);

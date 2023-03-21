@@ -10,7 +10,7 @@
       <h2>Details</h2>
       <form method="POST" action="/flights/<%= flight._id %>/destinations">
         <label>Airport</label>
-            <select name="airPort">
+            <select name="airport">
                 <option value="AUS">AUS</option>
                 <option value="DFW" selected>DFW</option>
                 <option value="DEN">DEN</option>
@@ -26,15 +26,16 @@
     <table>
         <thead>
           <tr>
-            <th>Arrival </th>
             <th>Airport </th>
+            <th>Arrival </th>
           </tr>
         </thead>
         <tbody>
             <% flight.destinations.forEach(function(d) { %>
               <tr>
+                <td><%= d.airport %></td> 
                 <td><%= d.arrival %></td>
-                <td><%= d.airPort %></td>
+                <!-- add delete button -->
               </tr>
             <% }); %>
           </tbody>
