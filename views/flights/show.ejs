@@ -8,7 +8,7 @@
        
         
       <h2>Details</h2>
-      <form method="POST" action="/flights/<%= flight._id %>/destinations">
+      <form id="details" method="POST" action="/flights/<%= flight._id %>/destinations">
         <label>Airport</label>
             <select name="airport">
                 <option value="AUS">AUS</option>
@@ -43,6 +43,6 @@
       <% } else { %>
         <h5>No Destinations</h5>
       <% } %>
-
+    </section>
 </body>
 </html>
